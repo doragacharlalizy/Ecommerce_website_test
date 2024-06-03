@@ -1,0 +1,2 @@
+public/hero1.mov filter=lfs diff=lfs merge=lfs -text
+public/hero.mov filter=lfs diff=lfs merge=lfs -text
