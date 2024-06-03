@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { useNavigate, Link } from 'react-router-dom';
 import Userlogin from './Userlogin';
@@ -29,12 +29,14 @@ const NavbarContainer = styled.nav`
     padding: 10px;
   }
 `;
+
 const PurchaseIcon = styled(BsBagFill)`
   width: 20px;
   height: 20px;
   color: black;
   cursor: pointer;
 `;
+
 const LogoLink = styled(Link)`
   /* Optional: Add styles for the link if needed */
 `;
@@ -54,6 +56,7 @@ const WelcomeMessage = styled.div`
 const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
+  position: relative; /* Added for positioning dropdown */
 `;
 
 const Button = styled.button`
@@ -113,6 +116,27 @@ const SearchResultItem = styled.div`
   }
 `;
 
+const DropdownContainer = styled.div`
+  position: absolute;
+  top: calc(100% + 5px); /* Position below the profile icon */
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+`;
+
+const DropdownItem = styled.div`
+  padding: 8px 16px;
+  cursor: pointer;
+  display: flex;
+  gap: 3px;
+  &:hover {
+    background-color: #f5f5f5;
+  }
+`;
+
 const Navbar = ({ userId, welcomeMessage }) => {
   const navigate = useNavigate();
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -121,6 +145,9 @@ const Navbar = ({ userId, welcomeMessage }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [userData, setUserData] = useState(null);
   const [searchResults, setSearchResults] = useState([]);
+  const [showDropdown, setShowDropdown] = useState(false); // State for showing/hiding dropdown
+
+  const dropdownRef = useRef(null);
 
   useEffect(() => {
     const storedUserData = localStorage.getItem('user');
@@ -132,6 +159,20 @@ const Navbar = ({ userId, welcomeMessage }) => {
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowDropdown(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleOutsideClick);
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
   }, []);
 
   const handleScroll = () => {
@@ -170,6 +211,7 @@ const Navbar = ({ userId, welcomeMessage }) => {
       setSearchResults([]);
     }
   };
+
   const handlePurchase = () => {
     if (isLoggedIn) {
       navigate('/purchases/user', { state: { userId } }); 
@@ -224,24 +266,22 @@ const Navbar = ({ userId, welcomeMessage }) => {
           )}
           {isLoggedIn ? (
             <>
-            
               <WelcomeMessage>
-                <CgProfile />
-                {userData ? (
-                  <>
-                    {userData.username} 
-                    <SecondaryButton onClick={handleLogout}>Logout</SecondaryButton>
-                    <Button onClick={handleCart}>
-                <CartImage src={importedImages.cart} alt="Cart" />
-              </Button>
-              <Button onClick={handlePurchase}>
-                <PurchaseIcon />
-              </Button>
-                  </>
-                  
-                ) : (
-                  <span>Loading...</span>
+                <CgProfile onClick={() => setShowDropdown(!showDropdown)} />
+                {showDropdown && (
+                  <DropdownContainer ref={dropdownRef}>
+                    <DropdownItem onClick={handleLogout}>Logout</DropdownItem>
+                    <DropdownItem onClick={handleCart}>
+                      <CartImage src={importedImages.cart} alt="Cart" />
+                      Cart
+                    </DropdownItem>
+                    <DropdownItem onClick={handlePurchase}>
+                      <PurchaseIcon />
+                      Your Orders
+                    </DropdownItem>
+                  </DropdownContainer>
                 )}
+                {userData ? userData.username : <span>Loading...</span>}
               </WelcomeMessage>
             </>
           ) : (

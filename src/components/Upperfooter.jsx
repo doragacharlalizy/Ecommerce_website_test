@@ -69,18 +69,23 @@ const AccordionContent = styled.div`
 `;
 
 const UpperFooter = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState({
+    topCategories: false,
+    explore: false,
+    help: false,
+    company: false,
+  });
 
-  const toggleAccordion = () => {
-    setIsOpen(!isOpen);
+  const toggleAccordion = (section) => {
+    setIsOpen({ ...isOpen, [section]: !isOpen[section] });
   };
 
   return (
     <FooterContainer>
       <GridContainer>
         <Grid>
-          <Heading onClick={toggleAccordion}>Top Categories</Heading>
-          <AccordionContent isOpen={isOpen}>
+          <Heading onClick={() => toggleAccordion('topCategories')}>Top Categories</Heading>
+          <AccordionContent isOpen={isOpen.topCategories}>
             <SubHeading>Jean</SubHeading>
             <SubHeading>Tops</SubHeading>
             <SubHeading>Belts</SubHeading>
@@ -88,24 +93,24 @@ const UpperFooter = () => {
           </AccordionContent>
         </Grid>
         <Grid>
-          <Heading onClick={toggleAccordion}>Explore</Heading>
-          <AccordionContent isOpen={isOpen}>
+          <Heading onClick={() => toggleAccordion('explore')}>Explore</Heading>
+          <AccordionContent isOpen={isOpen.explore}>
             <SubHeading>New Arrivals</SubHeading>
             <SubHeading>Top Brands</SubHeading>
             <SubHeading>Trending</SubHeading>
           </AccordionContent>
         </Grid>
         <Grid>
-          <Heading onClick={toggleAccordion}>Help</Heading>
-          <AccordionContent isOpen={isOpen}>
+          <Heading onClick={() => toggleAccordion('help')}>Help</Heading>
+          <AccordionContent isOpen={isOpen.help}>
             <SubHeading>FAQs</SubHeading>
             <SubHeading>Returns</SubHeading>
             <SubHeading>Shipping</SubHeading>
           </AccordionContent>
         </Grid>
         <Grid>
-          <Heading onClick={toggleAccordion}>Company</Heading>
-          <AccordionContent isOpen={isOpen}>
+          <Heading onClick={() => toggleAccordion('company')}>Company</Heading>
+          <AccordionContent isOpen={isOpen.company}>
             <SubHeading>About Us</SubHeading>
             <SubHeading>Careers</SubHeading>
             <SubHeading>Contact Us</SubHeading>

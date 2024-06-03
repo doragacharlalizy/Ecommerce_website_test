@@ -60,8 +60,9 @@ const User = () => {
 
   return (
     <>
+          <Container>
+
       <Navbar welcomeMessage={userData && `Welcome ${userData.username}, ${userData.id}`} userId={userId} />
-      <Container>
         <Herosection />
         <Knowmore />
         <Products userId={userId} userData={userData} />

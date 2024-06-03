@@ -57,7 +57,7 @@ const ProductName = styled.h3`
 
 const ProductImage = styled.img`
   width: 100%;
-  height: auto;
+  height: 500px;
   border-radius: 8px;
   margin-bottom: 20px;
 `;
