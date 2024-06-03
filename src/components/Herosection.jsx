@@ -160,7 +160,7 @@ const Content = styled.div`
 `;
 
 const Title = styled.p`
-  font-size: 60px; /* Larger font size for description */
+  font-size: 60px; 
   font-weight:bold;
 `;
 

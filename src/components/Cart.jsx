@@ -336,7 +336,7 @@ const CartPage = () => {
       try {
         await updateQuantity(cart_item_id, updatedCartData[index].quantity);
       } catch (error) {
-        updatedCartData[index].quantity += 1; // Revert the state change if API call fails
+        updatedCartData[index].quantity += 1; 
         setCartData(updatedCartData);
       }
     }
@@ -350,7 +350,7 @@ const CartPage = () => {
     try {
       await updateQuantity(cart_item_id, updatedCartData[index].quantity);
     } catch (error) {
-      updatedCartData[index].quantity -= 1; // Revert the state change if API call fails
+      updatedCartData[index].quantity -= 1; 
       setCartData(updatedCartData);
     }
   };
