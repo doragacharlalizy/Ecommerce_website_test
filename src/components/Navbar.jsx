@@ -145,8 +145,7 @@ const Navbar = ({ userId, welcomeMessage }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [userData, setUserData] = useState(null);
   const [searchResults, setSearchResults] = useState([]);
-  const [showDropdown, setShowDropdown] = useState(false); // State for showing/hiding dropdown
-
+  const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
 
   useEffect(() => {
@@ -197,6 +196,7 @@ const Navbar = ({ userId, welcomeMessage }) => {
 
   const handleLogin = () => {
     setShowLoginModal(true);
+
   };
 
   const handleCloseModal = () => {
@@ -264,7 +264,7 @@ const Navbar = ({ userId, welcomeMessage }) => {
               ))}
             </SearchResultContainer>
           )}
-          {isLoggedIn ? (
+          {isLoggedIn || userId ? (
             <>
               <WelcomeMessage>
                 <CgProfile onClick={() => setShowDropdown(!showDropdown)} />

@@ -62,7 +62,7 @@ const GradientHeading = styled.h1`
 const Footer = () => {
   return (
     <FooterContainer>
-      <GradientHeading>Trendy Fashoins</GradientHeading>
+      <GradientHeading>Trendy Fashions</GradientHeading>
       <NamesContainer>
         <Name>Copyright © E-Commerce site</Name>
         <Name>All Rights Reserved</Name>

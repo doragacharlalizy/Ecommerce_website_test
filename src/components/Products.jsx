@@ -19,8 +19,7 @@ const Container = styled.div`
   flex-direction: column;
 
   @media (max-width: 768px) {
-    padding-left: 16px;
-    padding-right: 16px;
+    
     gap: 16px;
     padding-top: 0px;
     padding-bottom: 0px;
@@ -183,6 +182,11 @@ const Products = ({ userId }) => {
 
   return (
     <Container>
+       {/* {userId ? (
+          <h2>User ID: {userId}</h2>
+        ) : (
+          <h2>Guest User</h2>
+        )} */}
       <ContentContainer>
         <ParallaxSection
           title="Discover Your Style: Shop Our Latest Fashion Collection!" 

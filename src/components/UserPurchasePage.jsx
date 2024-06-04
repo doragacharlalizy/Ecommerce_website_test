@@ -37,6 +37,7 @@ const ProductContainer = styled.div`
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   transition: height 0.3s ease;
   height: 50%;
+  
 `;
 
 const Card = styled.div`
@@ -47,6 +48,7 @@ const Card = styled.div`
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: transform 0.3s ease;
+  width: 100%;
   &:hover {
     transform: scale(1.02);
   }
@@ -201,7 +203,7 @@ const PurchasePage = () => {
         </CardContainer>
         {/* Render ProductContainer only if the screen width is not small */}
         {!isSmallScreen && (
-          <ProductContainer style={{ marginLeft: '20px' }}>
+          <ProductContainer style={{ marginLeft: '20px',flex:'1' }}>
             {selectedProduct && (
               <div>
                 <Title>Selected Product Details</Title>

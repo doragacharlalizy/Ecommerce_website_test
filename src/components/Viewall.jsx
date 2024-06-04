@@ -33,7 +33,7 @@ const ProductContainer = styled.div`
 
 const ProductCard = styled.div`
   border: 1px solid #e0e0e0;
-  border-radius: 12px;
+  border-radius: 20px;
   overflow: hidden;
   transition: transform 0.3s ease;
   cursor: pointer;
@@ -47,7 +47,7 @@ const ProductCard = styled.div`
 const ProductImage = styled.img`
   height: 300px;
   object-fit: cover;
-  border-radius: 12px 12px 0 0;
+  border-radius: 15px;
 `;
 
 const ProductDetails = styled.div`
@@ -81,15 +81,15 @@ const ProductDetailsContainer = styled.div`
 
 const ProductDetailsCard = styled.div`
   background-color: #fff;
-  border-radius: 8px;
-  padding: 40px;
+  border-radius: 20px;
+  padding: 20px;
   max-width: 80%;
   overflow: auto;
 `;
 
 
 const CloseButton = styled.button`
-  position: absolute;
+  position: static;
   top: 20px;
   right: 20px;
   background-color: transparent;
@@ -97,6 +97,10 @@ const CloseButton = styled.button`
   cursor: pointer;
   font-size: 24px;
   color: #999;
+  justify-content:end;
+  align-items:end;
+  display:flex;
+  width:100%;
 
   &:hover {
     color: #333;
@@ -146,6 +150,7 @@ const QuantityContainer = styled.div`
   display: flex;
   align-items: center;
   margin-top: 20px;
+  gap:10px;
 `;
 
 const QuantityButton = styled.button`
@@ -234,15 +239,18 @@ const Viewall = () => {
         user: userId,
         product_id: productId,
         quantity: quantity,
+        selected_size: selectedSize, // Include the selected size in the request
       });
   
       toast.success('Product added to cart successfully');
   
-      console.log(`Added product ID ${productId} to cart with quantity ${quantity} for user ID ${userId}`);
+      console.log(`Added product ID ${productId} to cart with quantity ${quantity} and size ${selectedSize} for user ID ${userId}`);
     } catch (error) {
-      toast.error('Please login to add the product to cart');
+      toast.error('Failed to add the product to cart');
+      console.error('Error adding product to cart:', error);
     }
   };
+  
   
 
   const closeProductDetails = () => {
@@ -309,7 +317,7 @@ const Viewall = () => {
  
                <ProductDescription style={{color:"grey",fontSize:"14px"}}>{selectedProduct.description}</ProductDescription>
                <ProductPrice>Price: {selectedProduct.price}</ProductPrice>
-               <div>
+               <div style={{display: "flex"}}>
                  {selectedProduct.sizes_available.map((size) => (
                    <SizeBox
                      key={size}

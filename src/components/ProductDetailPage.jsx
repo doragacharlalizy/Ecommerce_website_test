@@ -79,8 +79,8 @@ const ProductDetail = styled.p`
   color: #666;
 `;
 
-const ClassificationProducts = ({  userData }) => {
-  const { classification_id } = useParams();
+const ProductDetailPage = ({  userData }) => {
+  const { id } = useParams();
   const [products, setProducts] = useState([]);
   const {  welcomeMessage } = location.state || {};
   const userId = localStorage.getItem('userId');
@@ -88,7 +88,7 @@ const ClassificationProducts = ({  userData }) => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch(`http://127.0.0.1:8000/products/classification/${classification_id}/`);
+        const response = await fetch(`http://127.0.0.1:8000/products/${id}/`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -100,7 +100,7 @@ const ClassificationProducts = ({  userData }) => {
     };
 
     fetchProducts();
-  }, [classification_id]);
+  }, [id]);
 
   useEffect(() => {
     console.log("User ID in ClassificationProducts:", userId);
@@ -135,4 +135,4 @@ const ClassificationProducts = ({  userData }) => {
   );
 };
 
-export default ClassificationProducts;
+export default ProductDetailPage;

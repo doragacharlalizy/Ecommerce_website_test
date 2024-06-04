@@ -27,9 +27,12 @@ class CartItem(models.Model):
     user = models.ForeignKey(Login, on_delete=models.CASCADE)
     product = models.ForeignKey(Products, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
+    selected_size = models.CharField(max_length=50, null=True)  # Set default value to None
 
     def __str__(self):
-        return f"{self.user.username}'s Cart - Product ID: {self.product.pk}"
+        return f"{self.user.username}'s Cart - Product ID: {self.product.pk}, Size: {self.selected_size}"
+
+
 class Purchase(models.Model):
     user = models.ForeignKey(Login, on_delete=models.CASCADE)
     product = models.ForeignKey(Products, on_delete=models.CASCADE)

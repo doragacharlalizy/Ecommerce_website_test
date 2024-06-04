@@ -11,6 +11,7 @@ const ParallaxContainer = styled.div`
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  padding:20px;
 
   &:before {
     content: "";

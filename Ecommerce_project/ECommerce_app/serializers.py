@@ -6,7 +6,7 @@ class CartItemSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CartItem
-        fields = ['id', 'user', 'product', 'quantity']
+        fields = '__all__'
 
     def get_id(self, obj):
         return obj.id

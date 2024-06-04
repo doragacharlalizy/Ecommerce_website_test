@@ -145,6 +145,7 @@ const ModalContent = styled.div`
   padding: 20px;
   text-align: center; /* Center align content */
   position: relative; /* Add position relative */
+  margin-top: 100px;
 `;
 
 const ModalButton = styled(Button)`

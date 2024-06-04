@@ -58,6 +58,7 @@ const App = () => {
           path="/"
           element={<Navbar onLoginClick={handleToggleLoginForm} />}
         />
+        
         <Route path="/adminlogin" element={<Loginform onLoginSuccess={handleLoginSuccess} />} />
         <Route
           path="/homepage"

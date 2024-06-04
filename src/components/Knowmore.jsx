@@ -13,7 +13,6 @@ const Container = styled.div`
 
 const LeftSide = styled.div`
   width: 100%;
-  padding: 0 20px;
 
   @media screen and (min-width: 768px) {
     width: 40%;
@@ -59,8 +58,8 @@ const UnmuteSymbol = styled.span`
   font-size: 24px;
 `;
 const Paragraph=styled.div`
-font-size:45px;
-font-weight:500px;
+font-size:50px;
+font-weight:600;
 text-align:left;
 @media (max-width: 768px) {
   text-align:center;

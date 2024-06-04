@@ -113,6 +113,7 @@ const Classification = ({ userId, userData }) => {
       {isMobileView ? (
         <Carousel itemsToShow={1} breakPoints={[{ width: 768, itemsToShow: 3 }]}>
           {renderClassificationsWithQueryParams()}
+          
         </Carousel>
       ) : (
         renderClassificationsWithCustomAttributes()

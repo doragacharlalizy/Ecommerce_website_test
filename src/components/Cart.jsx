@@ -99,11 +99,12 @@ const SelectedProductCard = styled.div`
   overflow: hidden;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   transition: height 0.3s ease; // Add transition for height change
-  height: ${({ selected }) => (selected ? 'auto' : '50%')}; // Adjust height based on selection
+  height: ${({ selected }) => (selected ? 'auto' : '')}; // Adjust height based on selection
 `;
 
 const SelectedProductCardContent = styled.div`
   padding: 20px;
+  flex:1;
 `;
 
 const CardImage = styled.img`

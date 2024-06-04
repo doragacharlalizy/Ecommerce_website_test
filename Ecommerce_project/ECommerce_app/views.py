@@ -138,18 +138,23 @@ class ProductDetailAPIView(APIView):
         product.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+from rest_framework import generics
+from .serializers import CartItemSerializer  # Import your CartItemSerializer
+
 class CartItemCreateView(generics.CreateAPIView):
     queryset = CartItem.objects.all()
     serializer_class = CartItemSerializer
 
     def perform_create(self, serializer):
-        # Assuming 'product_id' and 'quantity' are provided in the request data
+        # Assuming 'product_id', 'quantity', 'selected_size', and 'user' are provided in the request data
         product_id = self.request.data.get('product_id')
         quantity = self.request.data.get('quantity')
-        user_id=self.request.data.get('user')
+        selected_size = self.request.data.get('selected_size')
+        user_id = self.request.data.get('user')
 
         # Create the CartItem instance with the provided data
-        serializer.save(product_id=product_id, quantity=quantity,user_id=user_id)
+        serializer.save(product_id=product_id, quantity=quantity, selected_size=selected_size, user_id=user_id)
+
 
 class CartItemUpdateView(generics.UpdateAPIView):
     queryset = CartItem.objects.all()
